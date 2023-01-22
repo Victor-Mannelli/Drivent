@@ -3,8 +3,6 @@ import { Response } from "express";
 import enrollmentsService from "@/services/enrollments-service";
 import httpStatus from "http-status";
 
-import joi from "joi";
-
 export async function getEnrollmentByUser(req: AuthenticatedRequest, res: Response) {
   const { userId } = req;
 
@@ -19,15 +17,6 @@ export async function getEnrollmentByUser(req: AuthenticatedRequest, res: Respon
 
 export async function postCreateOrUpdateEnrollment(req: AuthenticatedRequest, res: Response) {
   try {
-    const cep = req.query.cep;
-    if(cep) {
-      const validateQueryCep = joi.string().pattern(/^[0-9]{8}$/).required();
-      const { error } = validateQueryCep.validate(cep, { abortEarly: false });
-      if (error) {
-        const errors = error.details.map((detail) => detail.message);
-        return res.status(422).send(errors);
-      }
-    }
     await enrollmentsService.createOrUpdateEnrollmentWithAddress({
       ...req.body,
       userId: req.userId,
