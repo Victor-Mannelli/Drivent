@@ -67,3 +67,26 @@ model Address {
   createdAt     DateTime   @default(now())
   updatedAt     DateTime   @updatedAt
 }
+
+model TicketsTypes {
+  id            Int       @id @default(autoincrement())
+  name          String
+  price         Int
+  isRemote      Boolean
+  includesHotel Boolean
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  Tickets       Tickets[]
+}
+
+model Tickets {
+  id           Int          @id @default(autoincrement())
+  status       String
+  ticketTypeId Int          @unique
+  TicketType   TicketsTypes @relation(fields: [ticketTypeId], references: [id])
+  enrollmentId Int
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  @@map("tickets")
+}
