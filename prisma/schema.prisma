@@ -89,4 +89,16 @@ model Tickets {
   Enrollment   Enrollment   @relation(fields: [enrollmentId], references: [id])
   createdAt    DateTime     @default(now())
   updatedAt    DateTime     @updatedAt
+  Payments     Payments[]
+}
+
+model Payments {
+  id             Int      @id @default(autoincrement())
+  ticketId       Int      @unique
+  Ticket         Tickets  @relation(fields: [ticketId], references: [id])
+  value          Int
+  cardIssuer     String   //VISA | MASTERCARD
+  cardLastDigits String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 }

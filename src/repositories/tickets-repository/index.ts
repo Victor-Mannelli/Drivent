@@ -35,12 +35,29 @@ async function addTicket(ticketTypeId: number, enrollmentId: number) {
     }
   });
 }
+async function ticketById(ticketId: number) {
+  return prisma.tickets.findFirst({
+    where: {
+      id: ticketId
+    }
+  });
+}
+async function checkTicketOwnership(ticketId: number, enrollmentId: number) {
+  return prisma.tickets.findMany({
+    where: {
+      id: ticketId,
+      enrollmentId
+    }
+  });
+}
 
 const ticketsRepository = {
   findManyTicketsTypes,
   findManyTickets,
   findTicketTypeById,
-  addTicket
+  addTicket,
+  ticketById,
+  checkTicketOwnership
 };
 
 export default ticketsRepository;

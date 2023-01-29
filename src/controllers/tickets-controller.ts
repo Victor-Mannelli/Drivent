@@ -27,7 +27,8 @@ export async function addTickets(req: Request, res: Response) {
     const userId = await getUserIdByToken(token);
     const enrollmentId = await enrollmentsService.getEnrollmentIdByUserId(userId.id);
     const ticket = await addTicket(ticketTypeId, enrollmentId.id);
-    res.status(200).send(ticket);
+    res.status(201).send(ticket);
+    res.status(201);
   } catch (error) {
     return res.status(401).send(error);
   }

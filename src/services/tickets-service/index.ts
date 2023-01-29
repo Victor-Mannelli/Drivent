@@ -12,3 +12,20 @@ export async function checkTicketType(ticketTypeId: number) {
 export async function addTicket(ticketTypeid: number, enrollmentId: number) {
   return await ticketsRepository.addTicket(ticketTypeid, enrollmentId);
 }
+export async function getTicketById(ticketId: number) {
+  return await ticketsRepository.ticketById(ticketId);
+}
+export async function checkTicketOwnership(ticketId: number, enrollmentId: number) {
+  return await ticketsRepository.checkTicketOwnership(ticketId, enrollmentId);
+}
+
+const ticketService = {
+  getTicketsTypes,
+  getTickets,
+  checkTicketType,
+  addTicket,
+  getTicketById,
+  checkTicketOwnership
+};
+
+export default ticketService;
