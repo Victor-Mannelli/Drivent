@@ -10,5 +10,5 @@ export async function checkTicketType(ticketTypeId: number) {
   return await ticketsRepository.findTicketTypeById(ticketTypeId);
 }
 export async function addTicket(ticketTypeid: number, enrollmentId: number) {
-  await ticketsRepository.addTicket(ticketTypeid, enrollmentId);
+  return await ticketsRepository.addTicket(ticketTypeid, enrollmentId);
 }

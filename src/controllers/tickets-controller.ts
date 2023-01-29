@@ -22,11 +22,12 @@ export async function addTickets(req: Request, res: Response) {
   const ticketTypeId: number = req.body.ticketTypeId;
   const header: string = req.header("Authorization");
   const token: string = header.replace("Bearer ", "");
-  
+
   try {
     const userId = await getUserIdByToken(token);
     const enrollmentId = await enrollmentsService.getEnrollmentIdByUserId(userId.id);
-    await addTicket(ticketTypeId, enrollmentId.id);
+    const ticket = await addTicket(ticketTypeId, enrollmentId.id);
+    res.status(200).send(ticket);
   } catch (error) {
     return res.status(401).send(error);
   }
