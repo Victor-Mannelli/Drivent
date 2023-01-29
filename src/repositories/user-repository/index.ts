@@ -15,6 +15,17 @@ async function findByEmail(email: string, select?: Prisma.UserSelect) {
   return prisma.user.findUnique(params);
 }
 
+function userIdByToken(token: string) {
+  return prisma.session.findFirst({
+    where: {
+      token: token
+    },
+    select: {
+      id: true
+    }
+  });
+}
+
 async function create(data: Prisma.UserUncheckedCreateInput) {
   return prisma.user.create({
     data,
@@ -24,6 +35,7 @@ async function create(data: Prisma.UserUncheckedCreateInput) {
 const userRepository = {
   findByEmail,
   create,
+  userIdByToken
 };
 
 export default userRepository;

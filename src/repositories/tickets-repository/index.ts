@@ -10,9 +10,37 @@ async function findManyTickets() {
     }
   });
 }
+async function findTicketTypeById(ticketTypeId: number) {
+  return prisma.ticketsTypes.findFirst({
+    where: {
+      id: ticketTypeId
+    }
+  });
+}
+async function addTicket(ticketTypeId: number, enrollmentId: number) {
+  prisma.tickets.create ({
+    data: {
+      status: "reserverd",
+      ticketTypeId,
+      enrollmentId
+    },
+    select: {
+      id: true,
+      status: true,
+      ticketTypeId: true,
+      enrollmentId: true,
+      TicketType: true,
+      createdAt: true,
+      updatedAt: true
+    }
+  });
+}
+
 const ticketsRepository = {
   findManyTicketsTypes,
-  findManyTickets
+  findManyTickets,
+  findTicketTypeById,
+  addTicket
 };
 
 export default ticketsRepository;

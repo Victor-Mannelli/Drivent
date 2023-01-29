@@ -6,3 +6,9 @@ export async function getTicketsTypes() {
 export async function getTickets() {
   return await ticketsRepository.findManyTickets();
 }
+export async function checkTicketType(ticketTypeId: number) {
+  return await ticketsRepository.findTicketTypeById(ticketTypeId);
+}
+export async function addTicket(ticketTypeid: number, enrollmentId: number) {
+  await ticketsRepository.addTicket(ticketTypeid, enrollmentId);
+}

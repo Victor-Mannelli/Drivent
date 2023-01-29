@@ -48,9 +48,10 @@ model Enrollment {
   phone     String    @db.VarChar(255)
   userId    Int       @unique
   User      User      @relation(fields: [userId], references: [id])
-  Address   Address[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
+  Address   Address[]
+  Tickets   Tickets[]
 }
 
 model Address {
@@ -84,7 +85,8 @@ model Tickets {
   status       String
   ticketTypeId Int          @unique
   TicketType   TicketsTypes @relation(fields: [ticketTypeId], references: [id])
-  enrollmentId Int
+  enrollmentId Int          @unique
+  Enrollment   Enrollment   @relation(fields: [enrollmentId], references: [id])
   createdAt    DateTime     @default(now())
   updatedAt    DateTime     @updatedAt
 }
