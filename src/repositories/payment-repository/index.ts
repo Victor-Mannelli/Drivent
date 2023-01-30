@@ -28,10 +28,20 @@ async function postPaymentTicket(paymentInfo: Payment, price: number) {
     }
   });
 }
-
+async function updateTicketStatus(ticketId: number) {
+  await prisma.ticket.update({
+    where: {
+      id: ticketId,
+    },
+    data: {
+      status: "PAID"
+    }
+  });
+}
 const paymentRepository = {
   getPaymentTicket,
-  postPaymentTicket
+  postPaymentTicket,
+  updateTicketStatus
 };
 
 export default paymentRepository;

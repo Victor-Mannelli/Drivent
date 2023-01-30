@@ -29,14 +29,17 @@ export async function validateTicketId(req: AuthenticatedRequest, res: Response,
 }
 
 export async function validatePayment(req: AuthenticatedRequest, res: Response, next: NextFunction) {
+  const body = req.body;
+  if (!body.ticketId || !body.cardData) return res.sendStatus(400);
+
   const userId: number = req.userId;
   const enrollmentId = await enrollmentsService.getEnrollmentIdByUserId(userId);
   
-  const { ticketId } = req.body;
-  const ticketExists = await ticketService.getTicketById(Number(ticketId));
+  const ticketId: number = req.body.ticketId;
+  const ticketExists = await ticketService.getTicketById(ticketId);
   if (!ticketExists) return res.sendStatus(404);
 
-  const ticketIsFromUser = await ticketService.checkTicketOwnership(Number(ticketId), enrollmentId.id);
+  const ticketIsFromUser = await ticketService.checkTicketOwnership(ticketId, enrollmentId.id);
   if (!ticketIsFromUser) return res.sendStatus(401);
 
   next();

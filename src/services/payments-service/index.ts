@@ -1,16 +1,20 @@
 import paymentRepository from "@/repositories/payment-repository";
 import { Payment } from "@/types/payment-type";
 
-export async function getPaymentTicket(ticketId: number) {
+async function getPaymentTicket(ticketId: number) {
   return await paymentRepository.getPaymentTicket(ticketId);
 }
-export async function postPaymentTicket(paymentInfo: Payment, price: number) {
+async function postPaymentTicket(paymentInfo: Payment, price: number) {
   return await paymentRepository.postPaymentTicket(paymentInfo, price);
+}
+async function updateTicketStatus(ticketId: number) {
+  await paymentRepository.updateTicketStatus(ticketId);
 }
 
 const paymentsService = {
   getPaymentTicket,
-  postPaymentTicket
+  postPaymentTicket,
+  updateTicketStatus
 };
 
 export default paymentsService;
