@@ -16,7 +16,7 @@ export async function createUser({ email, password }: CreateUserParams): Promise
     password: hashedPassword,
   });
 }
-export async function getUserIdByToken(token: string) {
+async function getUserIdByToken(token: string) {
   const userId = await userRepository.userIdByToken(token);
   return userId;
 }

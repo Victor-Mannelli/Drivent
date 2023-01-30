@@ -50,6 +50,16 @@ async function checkTicketOwnership(ticketId: number, enrollmentId: number) {
     }
   });
 }
+async function priceByTicketTypeId(ticketTypeId: number) {
+  return prisma.ticketsTypes.findFirst({
+    where: {
+      id: ticketTypeId
+    },
+    select: {
+      price: true
+    }
+  });
+}
 
 const ticketsRepository = {
   findManyTicketsTypes,
@@ -57,7 +67,8 @@ const ticketsRepository = {
   findTicketTypeById,
   addTicket,
   ticketById,
-  checkTicketOwnership
+  checkTicketOwnership,
+  priceByTicketTypeId
 };
 
 export default ticketsRepository;

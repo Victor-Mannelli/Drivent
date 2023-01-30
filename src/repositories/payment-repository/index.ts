@@ -8,18 +8,20 @@ async function getPaymentTicket(ticketId: number) {
     }
   });
 }
-async function postPaymentTicket(paymentInfo: Payment) {
+async function postPaymentTicket(paymentInfo: Payment, price: number) {
   return await prisma.payments.create({
     data: {
       ticketId: paymentInfo.ticketId,
       cardIssuer: paymentInfo.cardData.issuer,
-      cardLastDigits: paymentInfo.cardData.number, // only need the last digs as string ??
+      cardLastDigits: paymentInfo.cardData.number.toString().slice(-4),
+      updatedAt: new Date().toISOString(),
+      value: price
     },
     select: {
       id: true,
       ticketId: true,
       value: true,
-      cardIssuer: true, 
+      cardIssuer: true,
       cardLastDigits: true,
       createdAt: true,
       updatedAt: true,

@@ -70,14 +70,15 @@ model Address {
 }
 
 model TicketsTypes {
-  id            Int       @id @default(autoincrement())
+  id            Int        @id @default(autoincrement())
   name          String
-  price         Int
+  price         Int        @unique
   isRemote      Boolean
   includesHotel Boolean
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
   Tickets       Tickets[]
+  Payments      Payments[]
 }
 
 model Tickets {
@@ -93,12 +94,13 @@ model Tickets {
 }
 
 model Payments {
-  id             Int      @id @default(autoincrement())
-  ticketId       Int      @unique
-  Ticket         Tickets  @relation(fields: [ticketId], references: [id])
+  id             Int          @id @default(autoincrement())
+  ticketId       Int          @unique
+  Ticket         Tickets      @relation(fields: [ticketId], references: [id])
   value          Int
-  cardIssuer     String   //VISA | MASTERCARD
+  Value          TicketsTypes @relation(fields: [value], references: [price])
+  cardIssuer     String //VISA | MASTERCARD
   cardLastDigits String
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
 }
