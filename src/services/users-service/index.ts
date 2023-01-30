@@ -16,10 +16,6 @@ export async function createUser({ email, password }: CreateUserParams): Promise
     password: hashedPassword,
   });
 }
-async function getUserIdByToken(token: string) {
-  const userId = await userRepository.userIdByToken(token);
-  return userId;
-}
 
 async function validateUniqueEmailOrFail(email: string) {
   const userWithSameEmail = await userRepository.findByEmail(email);
@@ -39,7 +35,6 @@ export type CreateUserParams = Pick<User, "email" | "password">;
 
 const userService = {
   createUser,
-  getUserIdByToken
 };
 
 export * from "./errors";

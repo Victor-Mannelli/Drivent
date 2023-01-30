@@ -1,14 +1,13 @@
 import { ticketIdSchema } from "@/schemas";
 import enrollmentsService from "@/services/enrollments-service";
 import ticketService from "@/services/tickets-service";
-import userService from "@/services/users-service";
-import { Request, Response, NextFunction } from "express";
+import { Response, NextFunction } from "express";
+import { AuthenticatedRequest } from "./authentication-middleware";
 
-export async function validateTicketId(req: Request, res: Response, next: NextFunction) {
+export async function validateTicketId(req: AuthenticatedRequest, res: Response, next: NextFunction) {
   const ticketId = req.query.ticketId;
   
   if (!ticketId) return res.sendStatus(400);
-  
   if (ticketId) {
     const { error } = ticketIdSchema.validate(ticketId, { abortEarly: false });
     if (error) {
@@ -20,10 +19,8 @@ export async function validateTicketId(req: Request, res: Response, next: NextFu
   const ticketExists = await ticketService.getTicketById(Number(ticketId));
   if (!ticketExists) return res.sendStatus(404);
 
-  const header: string = req.header("Authorization");
-  const token: string = header.replace("Bearer ", "");
-  const userId = await userService.getUserIdByToken(token);
-  const enrollmentId = await enrollmentsService.getEnrollmentIdByUserId(userId.id);
+  const userId: number = req.userId;
+  const enrollmentId = await enrollmentsService.getEnrollmentIdByUserId(userId);
 
   const ticketIsFromUser = await ticketService.checkTicketOwnership(Number(ticketId), enrollmentId.id);
   if (!ticketIsFromUser) return res.sendStatus(401);
@@ -31,11 +28,9 @@ export async function validateTicketId(req: Request, res: Response, next: NextFu
   next();
 }
 
-export async function validatePayment(req: Request, res: Response, next: NextFunction) {
-  const header: string = req.header("Authorization");
-  const token: string = header.replace("Bearer ", "");
-  const userId = await userService.getUserIdByToken(token);
-  const enrollmentId = await enrollmentsService.getEnrollmentIdByUserId(userId.id);
+export async function validatePayment(req: AuthenticatedRequest, res: Response, next: NextFunction) {
+  const userId: number = req.userId;
+  const enrollmentId = await enrollmentsService.getEnrollmentIdByUserId(userId);
   
   const { ticketId } = req.body;
   const ticketExists = await ticketService.getTicketById(Number(ticketId));

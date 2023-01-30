@@ -21,6 +21,9 @@ async function checkTicketOwnership(ticketId: number, enrollmentId: number) {
 async function getPriceByTicketTypeId(ticketTypeId: number) {
   return await ticketsRepository.priceByTicketTypeId(ticketTypeId);
 }
+async function getTicketByEnrollmentId(enrollmentId: number) {
+  return await ticketsRepository.ticketByEnrollmentId(enrollmentId);
+}
 
 const ticketService = {
   getTicketsTypes,
@@ -29,7 +32,8 @@ const ticketService = {
   addTicket,
   getTicketById,
   checkTicketOwnership,
-  getPriceByTicketTypeId
+  getPriceByTicketTypeId,
+  getTicketByEnrollmentId
 };
 
 export default ticketService;
