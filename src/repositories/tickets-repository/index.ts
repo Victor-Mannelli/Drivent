@@ -1,26 +1,26 @@
 import { prisma } from "@/config";
 
 async function findManyTicketsTypes() {
-  return prisma.ticketsTypes.findMany();
+  return prisma.ticketType.findMany();
 }
 async function findManyTickets() {
-  return prisma.tickets.findMany({
+  return prisma.ticket.findMany({
     include: {
       TicketType: true
     }
   });
 }
 async function findTicketTypeById(ticketTypeId: number) {
-  return prisma.ticketsTypes.findFirst({
+  return prisma.ticketType.findFirst({
     where: {
       id: ticketTypeId
     }
   });
 }
 async function addTicket(ticketTypeId: number, enrollmentId: number) {
-  return prisma.tickets.create ({
+  return prisma.ticket.create ({
     data: {
-      status: "reserverd",
+      status: "RESERVED",
       ticketTypeId,
       enrollmentId
     },
@@ -36,14 +36,14 @@ async function addTicket(ticketTypeId: number, enrollmentId: number) {
   });
 }
 async function ticketById(ticketId: number) {
-  return prisma.tickets.findFirst({
+  return prisma.ticket.findFirst({
     where: {
       id: ticketId
     }
   });
 }
 async function checkTicketOwnership(ticketId: number, enrollmentId: number) {
-  return prisma.tickets.findMany({
+  return prisma.ticket.findMany({
     where: {
       id: ticketId,
       enrollmentId
@@ -51,7 +51,7 @@ async function checkTicketOwnership(ticketId: number, enrollmentId: number) {
   });
 }
 async function priceByTicketTypeId(ticketTypeId: number) {
-  return prisma.ticketsTypes.findFirst({
+  return prisma.ticketType.findFirst({
     where: {
       id: ticketTypeId
     },

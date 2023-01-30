@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -48,10 +45,10 @@ model Enrollment {
   phone     String    @db.VarChar(255)
   userId    Int       @unique
   User      User      @relation(fields: [userId], references: [id])
+  Address   Address[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  Address   Address[]
-  Tickets   Tickets[]
+  Ticket    Ticket[]
 }
 
 model Address {
@@ -69,38 +66,41 @@ model Address {
   updatedAt     DateTime   @updatedAt
 }
 
-model TicketsTypes {
-  id            Int        @id @default(autoincrement())
-  name          String
-  price         Int        @unique
+model TicketType {
+  id            Int      @id @default(autoincrement())
+  name          String   @db.VarChar(255)
+  price         Int
   isRemote      Boolean
   includesHotel Boolean
-  createdAt     DateTime   @default(now())
-  updatedAt     DateTime   @updatedAt
-  Tickets       Tickets[]
-  Payments      Payments[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  Ticket        Ticket[]
 }
 
-model Tickets {
+model Ticket {
   id           Int          @id @default(autoincrement())
-  status       String
-  ticketTypeId Int          @unique
-  TicketType   TicketsTypes @relation(fields: [ticketTypeId], references: [id])
-  enrollmentId Int          @unique
+  ticketTypeId Int
+  TicketType   TicketType   @relation(fields: [ticketTypeId], references: [id])
+  enrollmentId Int
   Enrollment   Enrollment   @relation(fields: [enrollmentId], references: [id])
+  status       TicketStatus
   createdAt    DateTime     @default(now())
   updatedAt    DateTime     @updatedAt
-  Payments     Payments[]
+  Payment      Payment[]
 }
 
-model Payments {
-  id             Int          @id @default(autoincrement())
-  ticketId       Int          @unique
-  Ticket         Tickets      @relation(fields: [ticketId], references: [id])
+enum TicketStatus {
+  RESERVED
+  PAID
+}
+
+model Payment {
+  id             Int      @id @default(autoincrement())
+  ticketId       Int
+  Ticket         Ticket   @relation(fields: [ticketId], references: [id])
   value          Int
-  Value          TicketsTypes @relation(fields: [value], references: [price])
-  cardIssuer     String //VISA | MASTERCARD
+  cardIssuer     String
   cardLastDigits String
-  createdAt      DateTime     @default(now())
-  updatedAt      DateTime     @updatedAt
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 }

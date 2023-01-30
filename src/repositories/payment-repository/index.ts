@@ -2,14 +2,14 @@ import { prisma } from "@/config";
 import { Payment } from "@/types/payment-type";
 
 async function getPaymentTicket(ticketId: number) {
-  return await prisma.payments.findFirst({
+  return await prisma.payment.findFirst({
     where: {
       ticketId
     }
   });
 }
 async function postPaymentTicket(paymentInfo: Payment, price: number) {
-  return await prisma.payments.create({
+  return await prisma.payment.create({
     data: {
       ticketId: paymentInfo.ticketId,
       cardIssuer: paymentInfo.cardData.issuer,
