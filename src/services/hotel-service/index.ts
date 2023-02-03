@@ -1,11 +1,15 @@
 import hotelRepository from "@/repositories/hotel-repository";
 
-async function getHotels() {
+async function getAllHotels() {
   return await hotelRepository.findManyHotels();
+}
+async function getHotelsRooms(hotelId: number) {
+  return await hotelRepository.findManyHotelsRooms(hotelId);
 }
 
 const hotelService = {
-  getHotels
+  getAllHotels,
+  getHotelsRooms
 };
 
 export default hotelService;
