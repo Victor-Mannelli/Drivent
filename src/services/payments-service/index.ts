@@ -1,5 +1,5 @@
 import paymentRepository from "@/repositories/payment-repository";
-import { Payment } from "@/types/payment-type";
+import { Payment } from "@/protocols";
 
 async function getPaymentTicket(ticketId: number) {
   return await paymentRepository.getPaymentTicket(ticketId);

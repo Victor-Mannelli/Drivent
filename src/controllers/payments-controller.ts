@@ -1,6 +1,6 @@
 import paymentsService from "@/services/payments-service";
 import ticketService from "@/services/tickets-service";
-import { Payment } from "@/types/payment-type";
+import { Payment } from "@/protocols";
 import { Request, Response } from "express";
 
 export async function getPayments(req: Request, res: Response) {

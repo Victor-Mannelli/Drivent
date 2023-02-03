@@ -1,5 +1,5 @@
 import { prisma } from "@/config";
-import { Payment } from "@/types/payment-type";
+import { Payment } from "@/protocols";
 
 async function getPaymentTicket(ticketId: number) {
   return await prisma.payment.findFirst({
