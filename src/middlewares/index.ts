@@ -3,3 +3,4 @@ export * from "./validation-middleware";
 export * from "./authentication-middleware";
 export * from "./cep-validation-middleware";
 export * from "./payments-middleware";
+export * from "./hotels-middleware";

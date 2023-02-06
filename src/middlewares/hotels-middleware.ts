@@ -21,3 +21,11 @@ export async function validateHotels(req: AuthenticatedRequest, res: Response, n
 
   next();
 }
+
+export async function validateHotelId(req: AuthenticatedRequest, res: Response, next: NextFunction) {
+  const hotelId = req.params.hotelId;
+  const hotel = await hotelService.getHotelById(Number(hotelId));
+  if (hotel.length === 0) return res.status(404).send("No valid hotel with corresponding id");
+
+  next();
+}
