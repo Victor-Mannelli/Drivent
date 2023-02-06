@@ -16,7 +16,18 @@ async function main() {
     });
   }
 
+  let users = await prisma.user.findFirst();
+  if (!users) {
+    await prisma.user.create({
+      data: {
+        email: "cleber@gmail.com",
+        password: "asdasd"
+      }
+    })
+  }
+
   console.log({ event });
+  console.log({ users });
 }
 
 main()

@@ -18,8 +18,8 @@ async function getTicketById(ticketId: number) {
 async function checkTicketOwnership(ticketId: number, enrollmentId: number) {
   return await ticketsRepository.checkTicketOwnership(ticketId, enrollmentId);
 }
-async function getPriceByTicketTypeId(ticketTypeId: number) {
-  return await ticketsRepository.priceByTicketTypeId(ticketTypeId);
+async function getTicketTypeByTicketTypeId(ticketTypeId: number) {
+  return await ticketsRepository.TicketTypeByTicketTypeId(ticketTypeId);
 }
 async function getTicketByEnrollmentId(enrollmentId: number) {
   return await ticketsRepository.ticketByEnrollmentId(enrollmentId);
@@ -32,7 +32,7 @@ const ticketService = {
   addTicket,
   getTicketById,
   checkTicketOwnership,
-  getPriceByTicketTypeId,
+  getTicketTypeByTicketTypeId,
   getTicketByEnrollmentId
 };
 

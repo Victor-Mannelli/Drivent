@@ -18,8 +18,8 @@ export async function postPayment(req: Request, res: Response) {
   const paymentInfo: Payment = req.body;
   const ticketTypeId: number = req.body.ticketTypeId;
   try {
-    const value = await ticketService.getPriceByTicketTypeId(ticketTypeId);
-    const paymentTicket = await paymentsService.postPaymentTicket(paymentInfo, value.price);
+    const ticketType = await ticketService.getTicketTypeByTicketTypeId(ticketTypeId);
+    const paymentTicket = await paymentsService.postPaymentTicket(paymentInfo, ticketType.price);
     await paymentsService.updateTicketStatus(paymentInfo.ticketId);
     
     res.status(200).send(paymentTicket);
