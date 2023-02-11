@@ -6,10 +6,14 @@ async function getBookingByUserId(userId: number) {
 async function getRoomById(roomId: number) {
   return await bookingRepository.findRoomById(roomId);
 }
+async function postBooking(roomId: number, userId: number) {
+  return await bookingRepository.createBooking(roomId, userId);
+}
 
 const bookingService = {
   getBookingByUserId,
-  getRoomById
+  getRoomById,
+  postBooking
 };
 
 export default bookingService;
