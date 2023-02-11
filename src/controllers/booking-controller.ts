@@ -8,6 +8,6 @@ export async function getBookingByUserId(req: AuthenticatedRequest, res: Respons
     const bookingData = await bookingService.getBookingByUserId(req.userId);
     res.status(200).send(bookingData);
   } catch (error) {
-    return res.sendStatus(httpStatus.NO_CONTENT);
+    return res.status(httpStatus.UNAUTHORIZED).send(error);
   }
 }
