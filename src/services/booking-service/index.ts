@@ -9,11 +9,15 @@ async function getRoomById(roomId: number) {
 async function postBooking(roomId: number, userId: number) {
   return await bookingRepository.createBooking(roomId, userId);
 }
+async function putRoomChange(roomId: number, bookingId: number) {
+  return await bookingRepository.updateBooking(roomId, bookingId);
+}
 
 const bookingService = {
   getBookingByUserId,
   getRoomById,
-  postBooking
+  postBooking,
+  putRoomChange
 };
 
 export default bookingService;
