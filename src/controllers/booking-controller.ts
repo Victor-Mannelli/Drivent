@@ -27,8 +27,8 @@ export async function putRoomChange(req: AuthenticatedRequest, res: Response) {
     const userId: number = req.userId;
     const userBookedRoom = await bookingService.getBookingByUserId(userId);
     const booking = await bookingService.putRoomChange(roomId, userBookedRoom.id);
-    res.status(200).send(booking);
+    res.status(200).send({ bookingId: booking.id });
   } catch (error) {
     return res.status(httpStatus.UNAUTHORIZED).send(error);
-  } 
+  }
 }

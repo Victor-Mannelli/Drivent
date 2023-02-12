@@ -23,13 +23,17 @@ export async function validatePostBooking(req: AuthenticatedRequest, res: Respon
 export async function validateRoomChanges(req: AuthenticatedRequest, res: Response, next: NextFunction) {
   const userId: number = req.userId;
   const roomId: number = req.body.roomId;
+  const bookingId: string = req.params.bookingId;
+
+  const booking = await bookingService.getBookingById(Number(bookingId));
+  if (booking === null) return res.sendStatus(httpStatus.NOT_FOUND);
 
   const userBookings = await bookingService.getBookingByUserId(userId);
   if (userBookings === null) return res.sendStatus(httpStatus.NOT_FOUND);
-
+  
   const Room = await bookingService.getRoomById(roomId);
   if (Room === null) return res.sendStatus(httpStatus.NOT_FOUND);
-  if (Room.capacity !== 0) return res.sendStatus(httpStatus.FORBIDDEN);
+  if (Room.capacity === 0) return res.sendStatus(httpStatus.FORBIDDEN); //403
 
   next();
 }
