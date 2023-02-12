@@ -16,7 +16,7 @@ export async function validatePostBooking(req: AuthenticatedRequest, res: Respon
 
   const Room = await bookingService.getRoomById(roomId);
   if (Room === null) return res.sendStatus(httpStatus.NOT_FOUND);
-  if (Room.capacity !== 0) return res.sendStatus(httpStatus.FORBIDDEN);
+  if (Room.capacity === 0) return res.sendStatus(httpStatus.FORBIDDEN);
 
   next();
 }

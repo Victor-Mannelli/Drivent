@@ -4,3 +4,4 @@ export * from "./sessions-factory";
 export * from "./enrollments-factory";
 export * from "./tickets-factory";
 export * from "./payment-factory";
+export * from "./booking-factory";
