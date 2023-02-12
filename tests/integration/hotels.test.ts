@@ -6,7 +6,7 @@ import * as jwt from "jsonwebtoken";
 import { createCustomTicketType, createEnrollmentWithAddress, createTicket, createTicketType, createUser } from "../factories";
 import { cleanDb, generateValidToken } from "../helpers";
 import { TicketStatus } from "@prisma/client";
-import { createHotel, createHotelRooms } from "../factories/hotels-factory";
+import { createHotel, createValidHotelRoom } from "../factories/hotels-factory";
 
 beforeAll(async () => {
   await init();
@@ -199,7 +199,7 @@ describe("get /hotels/:hotelId", () => {
       const ticketType = await createCustomTicketType(false, true);
       await createTicket(enrollment.id, ticketType.id, TicketStatus.PAID);
       const hotel = await createHotel();
-      await createHotelRooms(hotel.id);
+      await createValidHotelRoom(hotel.id);
 
       const response = await server.get(`/hotels/${hotel.id}`).set("Authorization", `Bearer ${token}`);
       expect(response.status).toEqual(httpStatus.OK);
