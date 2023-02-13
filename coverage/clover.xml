@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1676231626865" clover="3.2.0">
-  <project timestamp="1676231626865" name="All files">
-    <metrics statements="642" coveredstatements="588" conditionals="76" coveredconditionals="48" methods="122" coveredmethods="111" elements="840" coveredelements="747" complexity="0" loc="642" ncloc="642" packages="26" files="70" classes="70"/>
+<coverage generated="1676315641863" clover="3.2.0">
+  <project timestamp="1676315641863" name="All files">
+    <metrics statements="640" coveredstatements="586" conditionals="77" coveredconditionals="48" methods="123" coveredmethods="111" elements="840" coveredelements="745" complexity="0" loc="640" ncloc="640" packages="26" files="71" classes="71"/>
     <package name="src">
       <metrics statements="24" coveredstatements="18" conditionals="2" coveredconditionals="0" methods="5" coveredmethods="2"/>
       <file name="app.ts" path="/home/victor/Projects/drivent/src/app.ts">
@@ -61,7 +61,7 @@
       </file>
     </package>
     <package name="src.controllers">
-      <metrics statements="125" coveredstatements="115" conditionals="2" coveredconditionals="2" methods="16" coveredmethods="16"/>
+      <metrics statements="118" coveredstatements="111" conditionals="2" coveredconditionals="2" methods="16" coveredmethods="16"/>
       <file name="authentication-controller.ts" path="/home/victor/Projects/drivent/src/controllers/authentication-controller.ts">
         <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="11" type="stmt"/>
@@ -74,30 +74,23 @@
         <line num="13" count="2" type="stmt"/>
       </file>
       <file name="booking-controller.ts" path="/home/victor/Projects/drivent/src/controllers/booking-controller.ts">
-        <metrics statements="23" coveredstatements="20" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
-        <line num="1" count="11" type="stmt"/>
+        <metrics statements="16" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
         <line num="2" count="11" type="stmt"/>
         <line num="4" count="11" type="stmt"/>
         <line num="6" count="11" type="stmt"/>
         <line num="7" count="1" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="14" count="11" type="stmt"/>
-        <line num="15" count="1" type="stmt"/>
-        <line num="16" count="1" type="stmt"/>
+        <line num="10" count="11" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="16" count="11" type="stmt"/>
         <line num="17" count="1" type="stmt"/>
         <line num="18" count="1" type="stmt"/>
         <line num="19" count="1" type="stmt"/>
-        <line num="21" count="0" type="stmt"/>
-        <line num="24" count="11" type="stmt"/>
-        <line num="25" count="1" type="stmt"/>
-        <line num="26" count="1" type="stmt"/>
-        <line num="27" count="1" type="stmt"/>
-        <line num="28" count="1" type="stmt"/>
-        <line num="29" count="1" type="stmt"/>
-        <line num="30" count="1" type="stmt"/>
-        <line num="32" count="0" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
       </file>
       <file name="enrollments-controller.ts" path="/home/victor/Projects/drivent/src/controllers/enrollments-controller.ts">
         <metrics statements="20" coveredstatements="19" conditionals="1" coveredconditionals="1" methods="3" coveredmethods="3"/>
@@ -216,7 +209,7 @@
       </file>
     </package>
     <package name="src.errors">
-      <metrics statements="21" coveredstatements="19" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="5"/>
+      <metrics statements="24" coveredstatements="21" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="5"/>
       <file name="cannot-enroll-before-start-date-error.ts" path="/home/victor/Projects/drivent/src/errors/cannot-enroll-before-start-date-error.ts">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="3" count="11" type="stmt"/>
@@ -227,8 +220,13 @@
         <line num="3" count="11" type="stmt"/>
         <line num="4" count="0" type="stmt"/>
       </file>
+      <file name="forbidden-error.ts" path="/home/victor/Projects/drivent/src/errors/forbidden-error.ts">
+        <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="3" count="11" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+      </file>
       <file name="index.ts" path="/home/victor/Projects/drivent/src/errors/index.ts">
-        <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="11" type="stmt"/>
         <line num="2" count="11" type="stmt"/>
         <line num="3" count="11" type="stmt"/>
@@ -236,6 +234,7 @@
         <line num="5" count="11" type="stmt"/>
         <line num="6" count="11" type="stmt"/>
         <line num="7" count="11" type="stmt"/>
+        <line num="8" count="11" type="stmt"/>
       </file>
       <file name="invalid-data-error.ts" path="/home/victor/Projects/drivent/src/errors/invalid-data-error.ts">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
@@ -264,7 +263,7 @@
       </file>
     </package>
     <package name="src.middlewares">
-      <metrics statements="166" coveredstatements="141" conditionals="46" coveredconditionals="28" methods="21" coveredmethods="17"/>
+      <metrics statements="168" coveredstatements="141" conditionals="47" coveredconditionals="28" methods="21" coveredmethods="17"/>
       <file name="authentication-middleware.ts" path="/home/victor/Projects/drivent/src/middlewares/authentication-middleware.ts">
         <metrics statements="17" coveredstatements="17" conditionals="3" coveredconditionals="2" methods="2" coveredmethods="2"/>
         <line num="2" count="11" type="stmt"/>
@@ -340,7 +339,7 @@
         <line num="46" count="2" type="stmt"/>
       </file>
       <file name="error-handling-middleware.ts" path="/home/victor/Projects/drivent/src/middlewares/error-handling-middleware.ts">
-        <metrics statements="13" coveredstatements="2" conditionals="7" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <metrics statements="15" coveredstatements="2" conditionals="8" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="3" count="11" type="stmt"/>
         <line num="5" count="11" type="stmt"/>
         <line num="6" count="0" type="cond" truecount="0" falsecount="1"/>
@@ -353,7 +352,9 @@
         <line num="25" count="0" type="stmt"/>
         <line num="30" count="0" type="cond" truecount="0" falsecount="1"/>
         <line num="31" count="0" type="stmt"/>
-        <line num="38" count="0" type="stmt"/>
+        <line num="36" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
       </file>
       <file name="hotels-middleware.ts" path="/home/victor/Projects/drivent/src/middlewares/hotels-middleware.ts">
         <metrics statements="20" coveredstatements="20" conditionals="7" coveredconditionals="6" methods="2" coveredmethods="2"/>
